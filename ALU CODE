@@ -1,0 +1,19 @@
+module alu (
+    input  [3:0] a,        // 4-bit input A
+    input  [3:0] b,        // 4-bit input B
+    input  [2:0] sel,      // 3-bit select line
+    output reg [3:0] y     // 4-bit output
+);
+
+always @(*) begin
+    case (sel)
+        3'b000: y = a + b;       // Addition
+        3'b001: y = a - b;       // Subtraction
+        3'b010: y = a & b;       // AND
+        3'b011: y = a | b;       // OR
+        3'b100: y = ~a;          // NOT A (b is ignored)
+        default: y = 4'b0000;
+    endcase
+end
+
+endmodule
